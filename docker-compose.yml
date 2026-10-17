@@ -1,0 +1,38 @@
+include:
+  - path: asterisk/docker-compose.yml
+    env_file: .env
+  - path: audiobookshelf/docker-compose.yml
+    env_file: .env
+  - path: bazarr/docker-compose.yml
+    env_file: .env
+  - path: caddy/docker-compose.yml
+    env_file: .env
+  - path: flaresolverr/docker-compose.yml
+    env_file: .env
+  - path: homeassistant/docker-compose.yml
+    env_file: .env
+  - path: immich/docker-compose.yml
+    env_file: .env
+  - path: jellyfin/docker-compose.yml
+    env_file: .env
+  - path: jellyplex-watched/docker-compose.yml
+    env_file: .env
+  - path: mqtt/docker-compose.yml
+    env_file: .env
+  - path: plex/docker-compose.yml
+    env_file: .env
+  - path: prowlarr/docker-compose.yml
+    env_file: .env
+  - path: radarr/docker-compose.yml
+    env_file: .env
+  - path: sonarr/docker-compose.yml
+    env_file: .env
+  - path: syncthing/docker-compose.yml
+    env_file: .env
+  - path: technitium/docker-compose.yml
+    env_file: .env
+  - path: transmission/docker-compose.yml
+    env_file: .env
+  - path: zigbee2mqtt/docker-compose.yml
+    env_file: .env
+

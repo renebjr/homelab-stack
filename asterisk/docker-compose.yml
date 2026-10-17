@@ -1,0 +1,15 @@
+services:
+  asterisk:
+    image: andrius/asterisk:latest
+    container_name: asterisk
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    network_mode: host
+    volumes:
+      - ./config/etc:/etc/asterisk
+      - ./config/logs:/var/log/asterisk
+      - ./config/spool:/var/spool/asterisk
+

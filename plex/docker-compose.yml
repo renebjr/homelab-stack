@@ -1,0 +1,25 @@
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    network_mode: host
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    volumes:
+      - ./config:/config
+      - ${DRIVE}/shows:/tv
+      - ${DRIVE}/tv:/tv2
+      - ${DRIVE}/movies:/movies
+      - ${DRIVE}/music:/music
+      - ${DRIVE}/pictures:/pictures
+      - ${DRIVE}/podcasts:/podcasts
+      - ${DRIVE}/audiobooks:/audiobooks
+    devices:
+      - /dev/dri:/dev/dri
+    restart: unless-stopped

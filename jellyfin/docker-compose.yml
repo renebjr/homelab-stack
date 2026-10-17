@@ -1,0 +1,39 @@
+services:
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin
+    env_file: ../.env
+
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      # Opt-in to Intel compute/VPL runtimes inside the LinuxServer container
+      - DOCKER_MODS=linuxserver/mods:jellyfin-opencl-intel
+
+    volumes:
+      - ./config:/config
+      - ${DRIVE}:/media
+
+    # Pass the graphics and render nodes explicitly
+    devices:
+      - /dev/dri/card0:/dev/dri/card0
+      - /dev/dri/renderD128:/dev/dri/renderD128
+
+    # Match the host 'render' group ID so the container can use the device
+    group_add:
+      - "992"  # <-- REPLACE 105 with the number you got from step 1
+      - "44"
+
+    ports:
+      - 8096:8096
+      - 8920:8920
+      - 7359:7359/udp
+      - 1900:1900/udp
+
+    restart: unless-stopped
+

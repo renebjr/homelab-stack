@@ -1,0 +1,47 @@
+http://ha.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:8123
+}
+
+http://z2m.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:8089
+}
+
+http://shows.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:8989
+}
+
+http://movies.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:7878
+}
+
+http://subs.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:6767
+}
+
+http://indeces.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:9696
+}
+
+http://downloads.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:9091
+}
+
+http://jf.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:8096
+}
+
+http://books.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:8888
+}
+
+http://plex.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:32400
+}
+
+http://files.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:8384
+}
+
+http://photos.home.arpa {
+    reverse_proxy {$DOMAIN_IP}:2283
+}

@@ -1,0 +1,41 @@
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: transmission-vpn
+    # line above must be uncommented to allow external containers to connect.
+    # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/connect-a-container-to-gluetun.md#external-container-to-gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    volumes:
+      - ./gluetun:/gluetun
+    environment:
+      - VPN_SERVICE_PROVIDER=surfshark
+      - VPN_TYPE=openvpn
+      - OPENVPN_USER=${OPENVPN_USER}
+      - OPENVPN_PASSWORD=${OPENVPN_PW}
+      - SERVER_CITIES=Denver
+      - FIREWALL=on
+      - TZ=America/New_York
+    ports:
+      - 9091:9091         # Transmission Web UI
+      - 51413:51413       # Torrent TCP
+      - 51413:51413/udp   # Torrent UDP
+    restart: unless-stopped
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    network_mode: "service:gluetun"
+    depends_on:
+      - gluetun
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=America/New_York
+    volumes:
+      - ./config:/config
+      - ${DRIVE}/:/downloads
+      - ${DRIVE}/watch:/watch
+    restart: unless-stopped
+

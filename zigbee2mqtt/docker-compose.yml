@@ -1,0 +1,16 @@
+services:
+    zigbee2mqtt:
+        container_name: zigbee2mqtt
+        image: ghcr.io/koenkk/zigbee2mqtt
+        restart: unless-stopped
+        volumes:
+            - ./data:/app/data
+            - /run/udev:/run/udev:ro
+        ports:
+            # Frontend port
+            - 8089:8080
+        environment:
+            - TZ=America/New_York
+        devices:
+            # Make sure this matched your adapter location
+            - /dev/serial/by-id/usb-Nabu_Casa_Home_Assistant_Connect_ZBT-1_c6b946e689ffef118f55df1497bbefe1-if00-port0:/dev/ttyACM0

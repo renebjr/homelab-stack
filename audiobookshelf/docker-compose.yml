@@ -1,0 +1,17 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    ports:
+      - 8888:80
+    volumes:
+      - ${DRIVE}/podcasts:/podcasts
+      - ${DRIVE}/audiobooks:/audiobooks
+      - ./config:/config
+      - ./metadata:/metadata
+    environment:
+      - TZ=America/New_York
+    restart: unless-stopped

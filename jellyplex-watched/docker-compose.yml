@@ -1,0 +1,8 @@
+services:
+  jellyplex-watched:
+    image: luigi311/jellyplex-watched:latest
+    container_name: jellyplex-watched
+    volumes:
+      - ./.env:/app/.env
+    stdin_open: true
+    restart: unless-stopped
